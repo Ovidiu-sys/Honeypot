@@ -1,0 +1,35 @@
+flowchart LR
+    A1[Atacator SSH\nbrute force / shell]:::coral --> B1
+    A2[Atacator HTTP\nscanner web]:::coral --> B2
+
+    subgraph srv [Servere]
+        B1[ssh/server.py\nparamiko server mode\naccepta orice credentiale]:::purple
+        B1 --> B3[ssh/fake_shell.py\nshell fals]:::gray
+        B2[http_trap/server.py\nFlask catch-all\ncaptureaza orice path]:::purple
+    end
+
+    subgraph core [Core]
+        C1[core/logger.py\nJSON structurat]:::teal
+        C2[core/geo.py\nMaxMind GeoLite2]:::teal
+    end
+
+    subgraph storage [Storage]
+        D1[(SQLite\nhoneypot.db)]:::blue
+        D2[Log JSON\nhoneypot.log]:::blue
+    end
+
+    M[main.py\nporneste ambele servere]:::gray -.-> B1
+    M -.-> B2
+
+    B1 --> C1
+    B2 --> C1
+    B1 -.-> C2
+    B2 -.-> C2
+    C1 --> D1
+    C1 --> D2
+
+    classDef coral fill:#FAECE7,stroke:#993C1D,color:#4A1B0C
+    classDef purple fill:#EEEDFE,stroke:#534AB7,color:#26215C
+    classDef teal fill:#E1F5EE,stroke:#0F6E56,color:#04342C
+    classDef blue fill:#E6F1FB,stroke:#185FA5,color:#042C53
+    classDef gray fill:#F1EFE8,stroke:#5F5E5A,color:#2C2C2A
