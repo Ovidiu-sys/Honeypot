@@ -22,7 +22,7 @@ analysis and visualization.
 
 ### Activity over time
 
-![SSH vs HTTP Activity](https://github.com/Ovidiu-sys/Honeypot/issues/1#issue-5160969747)
+![SSH vs HTTP Activity](graphs/3_ssh_vs_http_per_day.png)
 
 SSH activity spiked significantly around day 20, when the VPS IP appeared
 on additional scanning lists — unique attacker IPs jumped from ~50/day to
