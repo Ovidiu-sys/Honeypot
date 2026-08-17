@@ -188,5 +188,5 @@ this on a DigitalOcean VPS and collect real attack data.
 - Low-interaction: the fake shell does not execute real commands.
   A determined attacker will notice, but automated bots will not.
 - No HTTPS support (port 443) — planned.
-- Analysis script (`analysis/honeypot_analysis.py`) generates 14 charts
+- Analysis script (`analysis/honeypot_analysis.py`) generates 4 charts
   from the collected SQLite database.
