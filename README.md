@@ -10,7 +10,7 @@ analysis and visualization.
 
 ---
 
-## Results — 29 Days of Real Attack Data
+## Results - 29 Days of Real Attack Data
 
 | Metric | Value |
 |--------|-------|
@@ -36,7 +36,7 @@ final week.
 ![Top Countries](graphs/4_top_countries_ssh.png)
 
 Romania appearing at the top reflects compromised VPS infrastructure used
-as botnet intermediaries — not necessarily Romanian attackers.
+as botnet intermediaries - not necessarily Romanian attackers.
 
 ### Attack vectors detected (HTTP)
 
@@ -51,7 +51,7 @@ as botnet intermediaries — not necessarily Romanian attackers.
 | 17 | CVE-2021-3129 — Laravel Ignition RCE |
 | 9 | CVE-2018-10561 — GPON Router RCE |
 
-`.env` file exposure was by far the most targeted vector — attackers
+`.env` file exposure was by far the most targeted vector - attackers
 scan for accidentally exposed environment files containing database
 credentials and API keys.
 
@@ -106,36 +106,36 @@ For full technical documentation see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## What it captures
 
-**SSH** — for every connection attempt:
+**SSH** - for every connection attempt:
 - Source IP and geolocation (country, city)
 - Username and password tried
 - Commands typed in the fake shell after the attacker "logs in"
 
-**HTTP** — for every request:
+**HTTP** - for every request:
 - Source IP and geolocation
 - Method, path, User-Agent
-- POST body (truncated to 500 chars) — catches credential stuffing and
+- POST body (truncated to 500 chars) - catches credential stuffing and
   exploitation attempts
 
 ---
 
 ## Design decisions
 
-**Accept all SSH credentials** — the goal is to capture what attackers try,
+**Accept all SSH credentials** - the goal is to capture what attackers try,
 not to block them. Every username/password pair goes to the database.
 
-**Fake shell with plausible output** — keeps attackers connected longer,
+**Fake shell with plausible output** - keeps attackers connected longer,
 capturing more commands. Responses to `whoami`, `uname -a`, `cat /etc/passwd`
 look realistic without exposing the real system.
 
-**Offline geolocation** — MaxMind GeoLite2 local database instead of an API:
+**Offline geolocation** - MaxMind GeoLite2 local database instead of an API:
 no rate limits, no latency, works under heavy load.
 
-**Structured JSON logging** — every event is written as a JSON line to
+**Structured JSON logging** - every event is written as a JSON line to
 `honeypot.log`, ready to be ingested by a SIEM (Splunk, ELK) without
 additional parsing.
 
-**SQLite over flat files** — enables queries like "top 10 passwords tried"
+**SQLite over flat files** - enables queries like "top 10 passwords tried"
 or "all commands from IPs in Russia" without writing a custom parser.
 
 ---
