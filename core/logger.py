@@ -86,7 +86,7 @@ class HoneypotLogger:
             "timestamp": timestamp,
             "event": "ssh_command",
             "ip": ip,
-            "attemp_id": attempt_id,
+            "attempt_id": attempt_id,
             "command": command,
             "country": country
         }
