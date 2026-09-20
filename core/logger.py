@@ -57,7 +57,7 @@ class HoneypotLogger:
             elif event == "ssh_command":
                 detail = f"$ {entry.get('command')}"
             elif event == "http_request":
-                detai = f"{entry.get('method')} {entry.get('path')}"
+                detail = f"{entry.get('method')} {entry.get('path')}"
             location = ""
             if entry.get("country"):
                 location = f"[{entry['country']}]"
