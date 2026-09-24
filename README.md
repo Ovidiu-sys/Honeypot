@@ -25,7 +25,7 @@ analysis and visualization.
 ![SSH vs HTTP Activity](graphs/3_ssh_vs_http_per_day.png)
 
 SSH activity spiked significantly around day 20, when the VPS IP appeared
-on additional scanning lists — unique attacker IPs jumped from ~50/day to
+on additional scanning lists - unique attacker IPs jumped from ~50/day to
 **240+ in a single day**, with total attempts reaching **1,000+/day** in the
 final week.
 
